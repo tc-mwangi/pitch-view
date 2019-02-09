@@ -18,7 +18,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     # EAT time specific
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.eatnow)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     # establish relationship with user
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
