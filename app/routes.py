@@ -19,6 +19,12 @@ def before_request():
 @app.route('/index')
 @login_required
 def index():
+    '''[summary]
+    
+    Returns:
+        [type] -- [description]
+    '''
+
 
     title = 'pitch view'
     
@@ -37,6 +43,12 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    '''[summary]
+    
+    Returns:
+        [type] -- [description]
+    '''
+
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     title = 'Sign In'
@@ -60,12 +72,24 @@ def login():
 
 @app.route('/logout')
 def logout():
+    '''[summary]
+    
+    Returns:
+        [type] -- [description]
+    '''
+
     logout_user()
     return redirect(url_for('index'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    '''[summary]
+    
+    Returns:
+        [type] -- [description]
+    '''
+
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
@@ -82,6 +106,15 @@ def register():
 @app.route('/user/<username>')
 @login_required
 def user(username):
+    '''[summary]
+    
+    Arguments:
+        username {[type]} -- [description]
+    
+    Returns:
+        [type] -- [description]
+    '''
+
     user = User.query.filter_by(username=username).first_or_404()
     posts = [
             {'author': user, 'body': 'Test post 1'},

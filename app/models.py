@@ -5,7 +5,16 @@ from app import db, login
 from hashlib import md5
 
 class User(UserMixin, db.Model):
-    '''creates instances of users '''
+    '''creates instances of users 
+    
+    Arguments:
+        UserMixin {[type]} -- [description]
+        db {[type]} -- [description]
+    
+    Returns:
+        [type] -- [description]
+    '''
+
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -50,7 +59,15 @@ def load_user(id):
 
 # remember to add category property
 class Post(db.Model):
-    ''' creates instances of pitched posts '''
+    '''creates instances of posts
+    
+    Arguments:
+        db {[type]} -- [description]
+    
+    Returns:
+        [type] -- [description]
+    '''
+
 
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
