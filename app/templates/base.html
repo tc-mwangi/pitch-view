@@ -1,0 +1,14 @@
+<html>
+    <head>
+        {% if title%}
+        <title>{{title}}- say, sell</title>
+        {% else %}
+        <title>Welcome to Pitch View!</title>
+        {% endif %}
+    </head>
+
+    <body>
+        <div></div>
+        {% block content %}{% endblock %}
+    </body>
+</html>
