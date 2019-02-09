@@ -1,9 +1,9 @@
-from app import app
+from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app.models import User
-from app.forms import LoginForm
+from app.forms import LoginForm, RegistrationForm
 
 # A decorator provides mapping between a url and a function.
 # you can chain more than one url to the same fuction.
@@ -13,7 +13,7 @@ from app.forms import LoginForm
 def index():
 
     title = 'pitch view'
-    user = {'username': 'loise'}
+    
     posts = [
         {
             'author': {'username': 'Loise'},
@@ -24,7 +24,7 @@ def index():
             'body': 'Some ugali please'
         }
     ]
-    return render_template('index.html', user=user, title=title, posts=posts)
+    return render_template('index.html', title=title, posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -54,3 +54,18 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
