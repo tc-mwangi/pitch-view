@@ -53,10 +53,6 @@ def load_user(id):
 
 
 
-
-
-
-
 # remember to add category property
 class Post(db.Model):
     '''creates instances of posts
