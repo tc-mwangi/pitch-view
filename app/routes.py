@@ -4,7 +4,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app.models import User
-from app.forms import LoginForm, RegistrationForm, EditProfileForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostPitchForm
 
 # A decorator provides mapping between a url and a function.
 # you can chain more than one url to the same fuction.
@@ -143,4 +143,17 @@ def edit_profile():
 @app.route('/post_pitch', methods=['GET', 'POST'])
 @login_required
 def post_pitch():
+    form = PostPitchForm(current_user.username)
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.about_me = form.about_me.data
+        db.session.commit()
+        flash('Your pitch has been posted.')
+        return redirect(url_for('edit_profile'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.about_me.data = current_user.about_me
+    return render_template('post_pitch.html', title='Post Pitch',
+                           form=form)
+
 

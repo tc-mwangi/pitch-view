@@ -42,9 +42,6 @@ class User(UserMixin, db.Model):
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)
 
 
-
-
-
 # tracks of user in user session
 @login.user_loader
 def load_user(id):
@@ -87,3 +84,5 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Category = db.Column(db.String(20), index=True, unique=True)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+
+    
