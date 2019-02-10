@@ -14,4 +14,8 @@ login = LoginManager(app)
 login.login_view = 'login'
 bootstrap = Bootstrap(app)
 
+from app.errors import bp as errors_bp
+app.register_blueprint(errors_bp)
+
+
 from app import routes, models
