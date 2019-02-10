@@ -139,3 +139,8 @@ def edit_profile():
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
 
+
+@app.route('/post_pitch', methods=['GET', 'POST'])
+@login_required
+def post_pitch():
+

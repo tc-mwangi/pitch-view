@@ -71,6 +71,8 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     # establish relationship with user
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # relationship link
+    category = db.relationship('Category', backref='type', lazy='dynamic')
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
@@ -80,4 +82,8 @@ class Post(db.Model):
 # class Comment(db.model):
 
 
-
+class Category(db.Model):
+    ''' '''
+    id = db.Column(db.Integer, primary_key=True)
+    Category = db.Column(db.String(20), index=True, unique=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
