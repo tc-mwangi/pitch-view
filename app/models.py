@@ -79,14 +79,32 @@ class Post(db.Model):
         return '<Post {}>'.format(self.body)
     
 
-# remember to add comments
-# class Comment(db.model):
-
 
 class Category(db.Model):
-    ''' '''
+    '''[summary]
+    
+    Arguments:
+        db {[type]} -- [description]
+    '''
+
     id = db.Column(db.Integer, primary_key=True)
     Category = db.Column(db.String(20), index=True, unique=True)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+
+
+
+class Comment(db.Model):
+    '''[summary]
+    
+    Arguments:
+        db {[type]} -- [description]
+    '''
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(140))
+    author = db.Column(db.String(32))
+    timestamp = db.Column(db.DateTime(), default=datetime.utcnow, index=True)
+
+
+
 
     
