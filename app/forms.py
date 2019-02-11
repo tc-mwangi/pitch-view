@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length
-from app.models import User
+from app.models import User, Post
 
 
 class LoginForm(FlaskForm):
@@ -69,9 +69,14 @@ class EditProfileForm(FlaskForm):
                 raise ValidationError('Please use a different username.')
 
 
-class PostPitchForm(FlaskForm):
-    ''' '''
-    pitch_category = StringField('Category', validators=[DataRequired()])
-    pich_body = TextAreaField('Body', validators=[Length(min=0, max=140)])
-    submit = SubmitField('Post')
+# class PostPitchForm(FlaskForm):
+#     ''' '''
+#     category = StringField('Category', validators=[DataRequired()])
+#     body = TextAreaField('Body', validators=[Length(min=0, max=140)])
+#     submit = SubmitField('Post')
     
+
+class PostForm(FlaskForm):
+    post = TextAreaField('Say something', validators=[
+        DataRequired(), Length(min=1, max=255)])
+    submit = SubmitField('Submit')

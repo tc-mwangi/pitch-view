@@ -3,8 +3,8 @@ from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from app.models import User
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostPitchForm
+from app.models import User, Post
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm
 
 # A decorator provides mapping between a url and a function.
 # you can chain more than one url to the same fuction.
@@ -15,8 +15,8 @@ def before_request():
         db.session.commit()
     
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
     '''[summary]
@@ -24,21 +24,17 @@ def index():
     Returns:
         [type] -- [description]
     '''
-
-
-    title = 'pitch view'
+    form=PostForm()
+    if form.validate_on_submit():
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live!')
+        return redirect(url_for('index'))
+        
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
     
-    posts = [
-        {
-            'author': {'username': 'Loise'},
-            'body': 'Tis a beautiful day in nairobi'
-        },
-        {
-            'author': {'username': 'June'},
-            'body': 'Some ugali please'
-        }
-    ]
-    return render_template('index.html', title=title, posts=posts)
+    return render_template('index.html', title='Home Page', form=form, posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -99,7 +95,9 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
+
         return redirect(url_for('login'))
+        
     return render_template('register.html', title='Register', form=form)
 
 
@@ -116,10 +114,9 @@ def user(username):
     '''
 
     user = User.query.filter_by(username=username).first_or_404()
-    posts = [
-            {'author': user, 'body': 'Test post 1'},
-            {'author': user, 'body': 'Test post 2'}     
-    ]
+
+    # posts = Post.query.filter_by(user_id=username).first_or_404()
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
     return render_template('user.html', user=user, posts=posts)
 
 
@@ -143,16 +140,9 @@ def edit_profile():
 @app.route('/post_pitch', methods=['GET', 'POST'])
 @login_required
 def post_pitch():
-    form = PostPitchForm(current_user.username)
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.about_me = form.about_me.data
-        db.session.commit()
-        flash('Your pitch has been posted.')
-        return redirect(url_for('edit_profile'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.about_me.data = current_user.about_me
+    form = PostForm(current_user.username)
+    
+   
     return render_template('post_pitch.html', title='Post Pitch',
                            form=form)
 

@@ -48,6 +48,15 @@ class User(UserMixin, db.Model):
 # tracks of user in user session
 @login.user_loader
 def load_user(id):
+    '''[summary]
+    
+    Arguments:
+        id {[type]} -- [description]
+    
+    Returns:
+        [type] -- [description]
+    '''
+
     return User.query.get(int(id))
 
 
@@ -67,13 +76,14 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
-    # EAT time specific
+    # UTC time specific
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     # establish relationship with user
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     # relationship link
     category = db.relationship('Category', backref='type', lazy='dynamic')
-
+    # relationship link
+    comments = db.relationship('Comment', backref='author', lazy='dynamic')
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
@@ -101,7 +111,7 @@ class Comment(db.Model):
     '''
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(140))
-    author = db.Column(db.String(32))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     timestamp = db.Column(db.DateTime(), default=datetime.utcnow, index=True)
 
 
