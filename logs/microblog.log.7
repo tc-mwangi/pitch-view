@@ -1,0 +1,124 @@
+2019-02-10 14:24:05,785 INFO: Microblog startup [in /Users/wanjirumwangi/Desktop/pitch-view/app/__init__.py:74]
+2019-02-10 14:27:21,494 INFO: Microblog startup [in /Users/wanjirumwangi/Desktop/pitch-view/app/__init__.py:74]
+2019-02-10 14:32:28,971 INFO: Microblog startup [in /Users/wanjirumwangi/Desktop/pitch-view/app/__init__.py:74]
+2019-02-10 14:32:39,105 INFO: Microblog startup [in /Users/wanjirumwangi/Desktop/pitch-view/app/__init__.py:74]
+2019-02-10 14:35:53,655 INFO: Microblog startup [in /Users/wanjirumwangi/Desktop/pitch-view/app/__init__.py:74]
+2019-02-10 16:25:31,586 INFO: Microblog startup [in /Users/wanjirumwangi/Desktop/pitch-view/app/__init__.py:74]
+2019-02-10 16:25:43,115 ERROR: Exception on / [GET] [in /Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1811, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 2087, in preprocess_request
+    rv = func()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/app/main/routes.py", line 19, in before_request
+    g.locale = str(get_locale())
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask_babel/__init__.py", line 257, in get_locale
+    rv = babel.locale_selector_func()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/app/__init__.py", line 81, in get_locale
+    return request.accept_languages.best_match(current_app.config['LANGUAGES'])
+KeyError: 'LANGUAGES'
+2019-02-10 16:28:19,675 INFO: Microblog startup [in /Users/wanjirumwangi/Desktop/pitch-view/app/__init__.py:74]
+2019-02-10 16:29:38,780 ERROR: Exception on /index [GET] [in /Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask_login/utils.py", line 228, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/app/main/routes.py", line 39, in index
+    page, current_app.config['POSTS_PER_PAGE'], False)
+KeyError: 'POSTS_PER_PAGE'
+2019-02-10 16:35:08,936 INFO: Microblog startup [in /Users/wanjirumwangi/Desktop/pitch-view/app/__init__.py:74]
+2019-02-10 16:35:16,169 ERROR: Exception on /index [GET] [in /Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask_login/utils.py", line 228, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/app/main/routes.py", line 41, in index
+    if posts.has_next else None
+NameError: name 'posts' is not defined
+2019-02-10 16:35:16,319 ERROR: Exception on /index [GET] [in /Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask_login/utils.py", line 228, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/app/main/routes.py", line 41, in index
+    if posts.has_next else None
+NameError: name 'posts' is not defined
+2019-02-10 16:35:16,326 ERROR: Exception on /index [GET] [in /Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask_login/utils.py", line 228, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/app/main/routes.py", line 41, in index
+    if posts.has_next else None
+NameError: name 'posts' is not defined
+2019-02-10 16:35:16,343 ERROR: Exception on /index [GET] [in /Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/virtual/lib/python3.7/site-packages/flask_login/utils.py", line 228, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/wanjirumwangi/Desktop/pitch-view/app/main/routes.py", line 41, in index
+    if posts.has_next else None
+NameError: name 'posts' is not defined
