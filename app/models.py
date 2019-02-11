@@ -22,8 +22,10 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     # relationship link
     posts = db.relationship('Post', backref='author', lazy='dynamic')
-    about_me = db.Column(db.String(140))
+    about_me = db.Column(db.String(255))
+    # profile_pic_path = db.column(db.String())
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    
 
     # python method to print class to the console
     def __repr__(self):
@@ -37,6 +39,7 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    # add gravatar
     def avatar(self, size):
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(digest, size)
@@ -70,6 +73,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     # relationship link
     category = db.relationship('Category', backref='type', lazy='dynamic')
+
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
